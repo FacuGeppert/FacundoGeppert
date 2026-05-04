@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chess Engine Arena</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+</head>
+<body>
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+
+  <main class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Chess Engine Arena</p>
+        <h1>Jugá contra motores de ajedrez de élite</h1>
+        <p class="hero-text">Seleccioná una computadora top, jugá una partida y recibí análisis instantáneo de tus movimientos con evaluación, mejor jugada y clasificación.</p>
+      </div>
+
+      <section class="live-status" aria-label="Estado de la partida">
+        <span id="engineStatusDot" class="status-dot"></span>
+        <div>
+          <small>Motor</small>
+          <strong id="engineStatusText">Cargando Stockfish...</strong>
+        </div>
+      </section>
+    </header>
+
+    <section class="main-grid">
+      <aside class="panel engine-panel">
+        <div class="panel-heading">
+          <span>01</span>
+          <h2>Motores</h2>
+        </div>
+        <div id="engineList" class="engine-list"></div>
+      </aside>
+
+      <section class="board-area">
+        <div class="top-bar panel">
+          <div>
+            <small>Turno actual</small>
+            <strong id="turnLabel">Blancas</strong>
+          </div>
+          <div>
+            <small>Estado</small>
+            <strong id="gameStatus">Partida en curso</strong>
+          </div>
+          <div>
+            <small>Jugás con</small>
+            <select id="playerColorSelect" class="select-input">
+              <option value="w">Blancas</option>
+              <option value="b">Negras</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="board-card panel">
+          <div id="board" class="chess-board" aria-label="Tablero de ajedrez"></div>
+        </div>
+
+        <div class="action-row">
+          <button id="newGameBtn" class="primary-btn">Nueva partida</button>
+          <button id="undoBtn" class="ghost-btn">Retroceder</button>
+          <button id="retryBtn" class="ghost-btn">Reintentar</button>
+          <button id="flipBtn" class="ghost-btn">Girar tablero</button>
+        </div>
+      </section>
+
+      <aside class="panel analysis-panel">
+        <div class="panel-heading">
+          <span>02</span>
+          <h2>Análisis</h2>
+        </div>
+
+        <div class="eval-card">
+          <div class="eval-header">
+            <small>Evaluación</small>
+            <strong id="evalText">0.00</strong>
+          </div>
+          <div class="eval-bar">
+            <div id="evalFill" class="eval-fill"></div>
+          </div>
+          <div class="eval-labels">
+            <span>Negras</span>
+            <span>Blancas</span>
+          </div>
+        </div>
+
+        <div id="feedbackBox" class="feedback-box neutral">
+          Hacé tu primer movimiento para recibir análisis.
+        </div>
+
+        <div class="mini-stats">
+          <div>
+            <small>Mejor jugada</small>
+            <strong id="bestMoveText">—</strong>
+          </div>
+          <div>
+            <small>Tu jugada</small>
+            <strong id="playedMoveText">—</strong>
+          </div>
+          <div>
+            <small>Pérdida</small>
+            <strong id="lossText">—</strong>
+          </div>
+        </div>
+
+        <div class="moves-card">
+          <div class="moves-title">
+            <h3>Historial</h3>
+            <button id="copyFenBtn" class="tiny-btn">Copiar FEN</button>
+          </div>
+          <ol id="moveHistory"></ol>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="engine-api.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
